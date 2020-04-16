@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D00B7F52448313B0072A53D /* RNTPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B7F42448313B0072A53D /* RNTPicker.m */; };
-		9D00B7F62448313B0072A53D /* RNTPicker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D00B7F32448313B0072A53D /* RNTPicker.h */; };
+		9D00B7F52448313B0072A53D /* RNTPickerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */; };
+		9D00B7F62448313B0072A53D /* RNTPickerViewManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */; };
+		9D00B80724484D710072A53D /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B80624484D710072A53D /* PickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +19,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9D00B7F62448313B0072A53D /* RNTPicker.h in CopyFiles */,
+				9D00B7F62448313B0072A53D /* RNTPickerViewManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26,8 +27,9 @@
 
 /* Begin PBXFileReference section */
 		9D00B7F02448313B0072A53D /* libRNTPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNTPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D00B7F32448313B0072A53D /* RNTPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTPicker.h; sourceTree = "<group>"; };
-		9D00B7F42448313B0072A53D /* RNTPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTPicker.m; sourceTree = "<group>"; };
+		9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTPickerViewManager.h; sourceTree = "<group>"; };
+		9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTPickerViewManager.m; sourceTree = "<group>"; };
+		9D00B80624484D710072A53D /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +62,19 @@
 		9D00B7F22448313B0072A53D /* RNTPicker */ = {
 			isa = PBXGroup;
 			children = (
-				9D00B7F32448313B0072A53D /* RNTPicker.h */,
-				9D00B7F42448313B0072A53D /* RNTPicker.m */,
+				9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */,
+				9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */,
+				9D00B80324484C9F0072A53D /* Picker */,
 			);
 			path = RNTPicker;
+			sourceTree = "<group>";
+		};
+		9D00B80324484C9F0072A53D /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				9D00B80624484D710072A53D /* PickerView.swift */,
+			);
+			path = Picker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +108,7 @@
 				TargetAttributes = {
 					9D00B7EF2448313B0072A53D = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -123,7 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D00B7F52448313B0072A53D /* RNTPicker.m in Sources */,
+				9D00B80724484D710072A53D /* PickerView.swift in Sources */,
+				9D00B7F52448313B0072A53D /* RNTPickerViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,13 +256,21 @@
 		9D00B7FA2448313B0072A53D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N276SVAZ33;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -257,13 +278,20 @@
 		9D00B7FB2448313B0072A53D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N276SVAZ33;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../react-native/React/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

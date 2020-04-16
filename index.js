@@ -1,4 +1,4 @@
 
-import { NativeModules, NativeEventEmitter } from 'react-native'
+import { requireNativeComponent } from 'react-native'
 
-const { RNTPicker } = NativeModules
+export const PickerView = requireNativeComponent('RNTPicker')
