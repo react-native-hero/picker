@@ -5,7 +5,7 @@ public class PickerView : UIView {
     
     @objc public var onChange: ((NSDictionary) -> Void)?
     
-    @objc public var items = [NSDictionary]() {
+    @objc public var options = [NSDictionary]() {
         didSet {
             DispatchQueue.main.async {
                 self.pickerView.reloadAllComponents()
@@ -24,7 +24,7 @@ public class PickerView : UIView {
                     return
                 }
                 
-                if selectedIndex >= 0 && selectedIndex < self.items.count {
+                if selectedIndex >= 0 && selectedIndex < self.options.count {
                     self.pickerView.selectRow(selectedIndex, inComponent: 0, animated: true)
                 }
                 
@@ -39,19 +39,19 @@ public class PickerView : UIView {
         }
     }
     
-    @objc public var font = UIFont.systemFont(ofSize: 16) {
+    @objc public var fontSize = 16 {
         didSet {
-            refreshIfNeeded()
-        }
-    }
-    
-    @objc public var textAlign = NSTextAlignment.center {
-        didSet {
-            refreshIfNeeded()
+            font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         }
     }
     
     @objc public var rowHeight = 44 {
+        didSet {
+            refreshIfNeeded()
+        }
+    }
+    
+    private var font = UIFont.systemFont(ofSize: 16) {
         didSet {
             refreshIfNeeded()
         }
@@ -83,7 +83,7 @@ public class PickerView : UIView {
     }()
     
     private func refreshIfNeeded() {
-        if items.count > 0 {
+        if options.count > 0 {
             DispatchQueue.main.async {
                 self.pickerView.reloadAllComponents()
             }
@@ -115,14 +115,17 @@ extension PickerView : UIPickerViewDelegate {
         
         optionLabel.font = font
         optionLabel.textColor = color
-        optionLabel.textAlignment = textAlign
+        optionLabel.textAlignment = .center
         
-        if items.count >= row {
-            optionLabel.text = items[row]["text"] as? String
+        var text = "undefined"
+        
+        if options.count >= row {
+            if let label = options[row]["text"] as? String {
+                text = label
+            }
         }
-        else {
-            optionLabel.text = "undefined"
-        }
+        
+        optionLabel.text = text
         
         return optionLabel
         
@@ -130,10 +133,10 @@ extension PickerView : UIPickerViewDelegate {
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedIndex = row
-        if let onChange = onChange, items.count > row {
+        if let onChange = onChange, options.count > row {
             let dict = NSMutableDictionary()
             dict["index"] = row
-            dict["value"] = items[row]["value"]
+            dict["option"] = options[row]
             onChange(dict)
         }
     }
@@ -147,7 +150,7 @@ extension PickerView : UIPickerViewDataSource {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return items.count
+        return options.count
     }
     
 }

@@ -1,6 +1,6 @@
 {
   "name": "@react-native-hero/picker",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "react native picker",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/react-native-hero/picker/issues"
   },
-  "homepage": "https://github.com/react-native-hero/picker#readme"
+  "homepage": "https://github.com/react-native-hero/picker#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
