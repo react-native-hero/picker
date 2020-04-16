@@ -1,0 +1,24 @@
+{
+  "name": "@react-native-hero/picker",
+  "version": "0.0.1",
+  "description": "react native picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-native-hero/picker.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "picker"
+  ],
+  "author": "musicode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/react-native-hero/picker/issues"
+  },
+  "homepage": "https://github.com/react-native-hero/picker#readme"
+}
