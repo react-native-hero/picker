@@ -7,7 +7,9 @@ public class PickerView : UIView {
     
     @objc public var items = [NSDictionary]() {
         didSet {
-            refreshIfNeeded(items: oldValue)
+            DispatchQueue.main.async {
+                self.pickerView.reloadAllComponents()
+            }
         }
     }
     
@@ -33,25 +35,25 @@ public class PickerView : UIView {
 
     @objc public var color = UIColor.black {
         didSet {
-            refreshIfNeeded(items: items)
+            refreshIfNeeded()
         }
     }
     
     @objc public var font = UIFont.systemFont(ofSize: 16) {
-       didSet {
-           refreshIfNeeded(items: items)
-       }
+        didSet {
+            refreshIfNeeded()
+        }
     }
     
     @objc public var textAlign = NSTextAlignment.center {
-       didSet {
-           refreshIfNeeded(items: items)
-       }
+        didSet {
+            refreshIfNeeded()
+        }
     }
     
-    @objc public var rowHeight: CGFloat = 44 {
+    @objc public var rowHeight = 44 {
         didSet {
-            refreshIfNeeded(items: items)
+            refreshIfNeeded()
         }
     }
     
@@ -80,7 +82,7 @@ public class PickerView : UIView {
         
     }()
     
-    private func refreshIfNeeded(items: [NSDictionary]) {
+    private func refreshIfNeeded() {
         if items.count > 0 {
             DispatchQueue.main.async {
                 self.pickerView.reloadAllComponents()
@@ -97,7 +99,7 @@ extension PickerView : UIPickerViewDelegate {
     }
 
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return rowHeight
+        return CGFloat(rowHeight)
     }
 
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

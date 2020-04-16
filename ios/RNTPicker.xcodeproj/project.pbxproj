@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D00B7F52448313B0072A53D /* RNTPickerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */; };
-		9D00B7F62448313B0072A53D /* RNTPickerViewManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */; };
+		9D00B7F52448313B0072A53D /* RNTPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B7F42448313B0072A53D /* RNTPickerManager.m */; };
+		9D00B7F62448313B0072A53D /* RNTPickerManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D00B7F32448313B0072A53D /* RNTPickerManager.h */; };
 		9D00B80724484D710072A53D /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00B80624484D710072A53D /* PickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -19,7 +19,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9D00B7F62448313B0072A53D /* RNTPickerViewManager.h in CopyFiles */,
+				9D00B7F62448313B0072A53D /* RNTPickerManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27,8 +27,8 @@
 
 /* Begin PBXFileReference section */
 		9D00B7F02448313B0072A53D /* libRNTPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNTPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTPickerViewManager.h; sourceTree = "<group>"; };
-		9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTPickerViewManager.m; sourceTree = "<group>"; };
+		9D00B7F32448313B0072A53D /* RNTPickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTPickerManager.h; sourceTree = "<group>"; };
+		9D00B7F42448313B0072A53D /* RNTPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTPickerManager.m; sourceTree = "<group>"; };
 		9D00B80624484D710072A53D /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,8 +62,8 @@
 		9D00B7F22448313B0072A53D /* RNTPicker */ = {
 			isa = PBXGroup;
 			children = (
-				9D00B7F32448313B0072A53D /* RNTPickerViewManager.h */,
-				9D00B7F42448313B0072A53D /* RNTPickerViewManager.m */,
+				9D00B7F32448313B0072A53D /* RNTPickerManager.h */,
+				9D00B7F42448313B0072A53D /* RNTPickerManager.m */,
 				9D00B80324484C9F0072A53D /* Picker */,
 			);
 			path = RNTPicker;
@@ -136,7 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D00B80724484D710072A53D /* PickerView.swift in Sources */,
-				9D00B7F52448313B0072A53D /* RNTPickerViewManager.m in Sources */,
+				9D00B7F52448313B0072A53D /* RNTPickerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

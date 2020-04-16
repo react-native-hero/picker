@@ -1,11 +1,11 @@
 
-#import "RNTPickerViewManager.h"
+#import "RNTPickerManager.h"
 #import "HeroPicker-Swift.h"
 #import <React/RCTFont.h>
 
-@implementation RNTPickerViewManager
+@implementation RNTPickerManager
 
-RCT_EXPORT_MODULE(RNTPickerView)
+RCT_EXPORT_MODULE(RNTPicker)
 
 - (UIView *)view {
     return [PickerView new];
@@ -15,7 +15,7 @@ RCT_EXPORT_VIEW_PROPERTY(items, NSArray<NSDictionary *>)
 RCT_EXPORT_VIEW_PROPERTY(selectedIndex, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(color, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(textAlign, NSTextAlignment)
-RCT_EXPORT_VIEW_PROPERTY(rowHeight, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(rowHeight, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, NSNumber, PickerView) {
