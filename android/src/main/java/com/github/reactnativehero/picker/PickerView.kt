@@ -5,6 +5,7 @@ import com.contrarywind.adapter.WheelAdapter
 import com.contrarywind.view.WheelView
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.events.RCTEventEmitter
@@ -15,26 +16,20 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
         private val dividerColor = Color.parseColor("#33000000")
     }
 
-    private var mapList = arrayListOf<HashMap<String, String>>()
-
     var options: ReadableArray = Arguments.createArray()
 
         set(value) {
             field = value
 
-            val count = options.size()
-
-            mapList = arrayListOf()
-
+            val count = value.size()
             val stringList = arrayListOf<String>()
 
-            for (item in options.toArrayList()) {
-                val map = item as HashMap<String, String>
+            for (i in 0 until value.size()) {
+                val map = value.getMap(i)!!
                 var text = "undefined"
-                if (map.contains("text")) {
-                    text = map["text"].toString()
+                if (map.hasKey("text")) {
+                    text = map.getString("text") as String
                 }
-                mapList.add(map)
                 stringList.add(text)
             }
 
@@ -66,11 +61,13 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             currentItem = value
 
             val map = Arguments.createMap()
-            val option = Arguments.createMap()
-            for ((key, value) in mapList[value]) {
-                option.putString(key, value)
-            }
             map.putInt("index", value)
+
+            // putMap 必须传入 WritableMap
+            // 如果直接传 ReadableMap 会报错
+            val option = Arguments.createMap()
+            option.merge(options.getMap(value)!!)
+
             map.putMap("option", option)
             sendEvent("onChange", map)
         }
@@ -92,7 +89,7 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             setTextSize(value)
         }
 
-    var rowHeight = 16
+    var rowHeight = 44
 
         set(value) {
             field = value

@@ -45,9 +45,9 @@ import {
 
 <Picker
   options={[
-    { text: '1', value: '1' },
-    { text: '2', value: '2' },
-    { text: '3', value: '3' },
+    { text: 'displayed text', value: 'support string or number' },
+    { text: '2', value: 'string' },
+    { text: '3', value: 3 },
   ]}
   onChange={data => {
     data.index

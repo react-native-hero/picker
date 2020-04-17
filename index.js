@@ -14,8 +14,7 @@ class PickerComponent extends PureComponent {
   static propTypes = {
     options: PropTypes.arrayOf(
       PropTypes.shape({
-        text: PropTypes.string,
-        value: PropTypes.string,
+        text: PropTypes.string.isRequired,
       })
     ).isRequired,
     selectedIndex: PropTypes.number,
