@@ -7,26 +7,31 @@ public class PickerView : UIView {
     
     @objc public var options = [NSDictionary]() {
         didSet {
-            DispatchQueue.main.async {
-                self.pickerView.reloadAllComponents()
-            }
+            refresh()
         }
     }
     
     @objc public var selectedIndex = -1 {
         didSet {
+
+            guard selectedIndex >= 0, selectedIndex < options.count else {
+                return
+            }
+            
+            if let onChange = onChange {
+                let dict = NSMutableDictionary()
+                dict["index"] = selectedIndex
+                dict["option"] = options[selectedIndex]
+                onChange(dict)
+            }
             
             DispatchQueue.main.async {
                 
-                let selectedIndex = self.selectedIndex
-                
-                guard selectedIndex != self.pickerView.selectedRow(inComponent: 0) else {
+                guard self.selectedIndex != self.pickerView.selectedRow(inComponent: 0) else {
                     return
                 }
                 
-                if selectedIndex >= 0 && selectedIndex < self.options.count {
-                    self.pickerView.selectRow(selectedIndex, inComponent: 0, animated: true)
-                }
+                self.pickerView.selectRow(self.selectedIndex, inComponent: 0, animated: true)
                 
             }
             
@@ -35,7 +40,9 @@ public class PickerView : UIView {
 
     @objc public var color = UIColor.black {
         didSet {
-            refreshIfNeeded()
+            if options.count > 0 {
+                refresh()
+            }
         }
     }
     
@@ -47,13 +54,17 @@ public class PickerView : UIView {
     
     @objc public var rowHeight = 44 {
         didSet {
-            refreshIfNeeded()
+            if options.count > 0 {
+                refresh()
+            }
         }
     }
     
     private var font = UIFont.systemFont(ofSize: 16) {
         didSet {
-            refreshIfNeeded()
+            if options.count > 0 {
+                refresh()
+            }
         }
     }
     
@@ -82,12 +93,21 @@ public class PickerView : UIView {
         
     }()
     
-    private func refreshIfNeeded() {
-        if options.count > 0 {
-            DispatchQueue.main.async {
-                self.pickerView.reloadAllComponents()
+    private func refresh() {
+
+        DispatchQueue.main.async {
+            
+            self.pickerView.reloadComponent(0)
+            
+            if self.selectedIndex >= 0 && self.selectedIndex < self.options.count {
+                self.pickerView.selectRow(self.selectedIndex, inComponent: 0, animated: true)
             }
+            else {
+                self.selectedIndex = 0
+            }
+            
         }
+        
     }
     
 }
@@ -133,12 +153,6 @@ extension PickerView : UIPickerViewDelegate {
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedIndex = row
-        if let onChange = onChange, options.count > row {
-            let dict = NSMutableDictionary()
-            dict["index"] = row
-            dict["option"] = options[row]
-            onChange(dict)
-        }
     }
     
 }
