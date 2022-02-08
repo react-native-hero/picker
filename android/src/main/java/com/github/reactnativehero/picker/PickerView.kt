@@ -47,14 +47,26 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
                 }
             }
 
+            if (tempIndex >= 0) {
+                selectedIndex = tempIndex
+                tempIndex = -1
+            }
+
         }
+
+    var tempIndex = -1
 
     var selectedIndex = -1
 
         set(value) {
             field = value
 
-            if (value < 0 || value >= options.size()) {
+            val optionsSize = options.size()
+
+            if (value < 0 || value >= optionsSize) {
+                if (optionsSize == 0) {
+                    tempIndex = value
+                }
                 return
             }
 
@@ -66,7 +78,7 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             // putMap 必须传入 WritableMap
             // 如果直接传 ReadableMap 会报错
             val option = Arguments.createMap()
-            option.merge(options.getMap(value)!!)
+            option.merge(options.getMap(value))
 
             map.putMap("option", option)
             sendEvent("onChange", map)
