@@ -4,7 +4,6 @@ import React, {
 
 import {
   requireNativeComponent,
-  ViewPropTypes,
 } from 'react-native'
 
 import PropTypes from 'prop-types'
@@ -22,7 +21,7 @@ class PickerComponent extends PureComponent {
     fontSize: PropTypes.number,
     rowHeight: PropTypes.number,
     onChange: PropTypes.func,
-    style: ViewPropTypes.style,
+    style: PropTypes.any,
   }
 
   static defaultProps = {
