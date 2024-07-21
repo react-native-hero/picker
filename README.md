@@ -44,6 +44,7 @@ import {
 } from '@react-native-hero/picker'
 
 <Picker
+  height={300}
   options={[
     { text: 'displayed text', value: 'support string or number' },
     { text: '2', value: 'string' },
@@ -54,7 +55,6 @@ import {
     data.option
   }}
   style={{
-    flex: 1,
     backgroundColor: '#eee'
   }}
 

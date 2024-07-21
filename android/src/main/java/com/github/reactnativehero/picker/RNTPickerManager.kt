@@ -42,6 +42,11 @@ class RNTPickerManager(private val reactAppContext: ReactApplicationContext) : S
         view.rowHeight = rowHeight
     }
 
+    @ReactProp(name = "visibleCount")
+    fun setVisibleCount(view: PickerView, visibleCount: Int) {
+        view.visibleCount = visibleCount
+    }
+
     override fun getExportedCustomBubblingEventTypeConstants(): MutableMap<String, Any> {
         return MapBuilder.builder<String, Any>()
                 .put("onChange", MapBuilder.of("phasedRegistrationNames", MapBuilder.of("bubbled", "onChange")))

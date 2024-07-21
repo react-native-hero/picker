@@ -25,7 +25,7 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             val stringList = arrayListOf<String>()
 
             for (i in 0 until value.size()) {
-                val map = value.getMap(i)!!
+                val map = value.getMap(i)
                 var text = "undefined"
                 if (map.hasKey("text")) {
                     text = map.getString("text") as String
@@ -109,8 +109,17 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             setLineSpacingMultiplier(rowHeight / fontSize)
         }
 
+    var visibleCount = 6
+
+        set(value) {
+            field = value
+
+            setItemsVisibleCount(visibleCount)
+        }
+
     init {
         setCyclic(false)
+        setAlphaGradient(true)
         setDividerColor(dividerColor)
         setOnItemSelectedListener {
             selectedIndex = it
