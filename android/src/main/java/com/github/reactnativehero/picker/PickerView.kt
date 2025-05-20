@@ -45,6 +45,14 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
                 override fun getItem(index: Int): String {
                     return stringList[index]
                 }
+
+                override fun getMaxValue(): Int {
+                    return 0
+                }
+
+                override fun getMinValue(): Int {
+                    return 0
+                }
             }
 
             if (tempIndex >= 0) {
