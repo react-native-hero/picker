@@ -1,6 +1,6 @@
 {
   "name": "@react-native-hero/picker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "react native picker",
   "main": "index.js",
   "scripts": {

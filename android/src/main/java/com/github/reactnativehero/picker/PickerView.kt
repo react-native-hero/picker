@@ -25,7 +25,7 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             val stringList = arrayListOf<String>()
 
             for (i in 0 until value.size()) {
-                val map = value.getMap(i)
+                val map = value.getMap(i)!!
                 var text = "undefined"
                 if (map.hasKey("text")) {
                     text = map.getString("text") as String
@@ -86,7 +86,7 @@ class PickerView(private val reactContext: ThemedReactContext) : WheelView(react
             // putMap 必须传入 WritableMap
             // 如果直接传 ReadableMap 会报错
             val option = Arguments.createMap()
-            option.merge(options.getMap(value))
+            option.merge(options.getMap(value)!!)
 
             map.putMap("option", option)
             sendEvent("onChange", map)
