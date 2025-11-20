@@ -1,7 +1,6 @@
 package com.github.reactnativehero.picker
 
 import com.facebook.react.bridge.*
-import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewProps
@@ -48,9 +47,14 @@ class RNTPickerManager(private val reactAppContext: ReactApplicationContext) : S
     }
 
     override fun getExportedCustomBubblingEventTypeConstants(): MutableMap<String, Any> {
-        return MapBuilder.builder<String, Any>()
-                .put("onChange", MapBuilder.of("phasedRegistrationNames", MapBuilder.of("bubbled", "onChange")))
-                .build()
+        val baseEventTypeConstants = super.getExportedCustomBubblingEventTypeConstants()
+        val eventTypeConstants = baseEventTypeConstants ?: mutableMapOf()
+        eventTypeConstants.putAll(
+            mapOf(
+                "onChange" to mapOf("phasedRegistrationNames" to mapOf("bubbled" to "onChange")),
+            )
+        )
+        return eventTypeConstants
     }
 
 }
